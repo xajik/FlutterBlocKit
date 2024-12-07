@@ -1,12 +1,12 @@
 {
     "dart.flutterSdkPath": ".fvm/versions/3.24.1",
     "fileHeaderComment.parameter": {
-        "": {
-            "commentbegin": "/",
-            "commentprefix": " ",
-            "commentend": "/",
-            "company": "igorsteblii.com",
-            "author": "igor"
+        "*": {
+            "commentbegin": "/*",
+            "commentprefix": " *",
+            "commentend": " */",
+            "company": "TODO: Update",
+            "author": "TODO: Update"
         }
     },
     "fileHeaderComment.template": {

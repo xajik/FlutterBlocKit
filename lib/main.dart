@@ -1,69 +1,76 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterblockit/di/analytics/amplitude_analytics.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'di/app_di.dart';
+import 'screens/_greenfield/greenfield_bloc.dart';
+import 'screens/_greenfield/greenfield_widget.dart';
+import 'screens/home/connectivity_bloc.dart';
+import 'utils/theme_utils.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final di = await ApplicationDependency.create();
+  await SystemChrome.setPreferredOrientations(
+    [DeviceOrientation.portraitUp],
+  );
+  runApp(createApp(di));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+Widget createApp(ApplicationDependency di) {
+  return MultiRepositoryProvider(
+    providers: [
+      RepositoryProvider.value(value: di.userSessionUsecase),
+      RepositoryProvider.value(value: di.postsUseCase),
+    ],
+    child: MultiBlocProvider(
+      providers: [
+        BlocProvider<ConnectivityBloc>(
+          create: (context) => ConnectivityBloc(Connectivity()),
         ),
+        BlocProvider(create: (context) => GreenfieldBloc()),
+        // BlocProvider<UserSessionBloc>(
+        //   lazy: false,
+        //   create: (context) => UserSessionBloc(di.userSessionUsecase)
+        //     ..add(HomeUserSessionInitEvent()),
+        // ),
+      ],
+      child: MaterialApp(
+        title: 'TODO: Update',
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        theme: AppTheme.createTheme(),
+        home: const GreenfieldScreenWidget(),
+        onGenerateRoute: _getRoutes(),
+        debugShowCheckedModeBanner: false,
+        navigatorObservers: [
+          AmplitudeNavigatorObserver(di.amplitude),
+          // di.firebase.observer, //TODO: Update
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
+    ),
+  );
 }
+
+RouteFactory _getRoutes() => (settings) {
+      Widget? widget;
+      final args = settings.arguments as Map<String, dynamic>?;
+      switch (settings.name) {
+        case GreenfieldScreenWidget.route:
+          widget = const GreenfieldScreenWidget();
+          break;
+      }
+      if (widget == null) {
+        assert(false, 'Need to implement ${settings.name}');
+        return null;
+      } else {
+        return MaterialPageRoute(
+          builder: (context) {
+            return widget!;
+          },
+        );
+      }
+    };
