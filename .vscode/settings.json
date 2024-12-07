@@ -1,0 +1,24 @@
+{
+    "dart.flutterSdkPath": ".fvm/versions/3.24.1",
+    "fileHeaderComment.parameter": {
+        "": {
+            "commentbegin": "/",
+            "commentprefix": " ",
+            "commentend": "/",
+            "company": "igorsteblii.com",
+            "author": "igor"
+        }
+    },
+    "fileHeaderComment.template": {
+        "*": [
+            "${commentbegin}",
+            "${commentprefix} Copyright (c) ${year} ${company} - All Rights Reserved",
+            "${commentprefix} Unauthorized copying of this file, via any medium is strictly prohibited",
+            "${commentprefix} Proprietary and confidential",
+            "${commentprefix}",
+            "${commentprefix} Written by ${author}",
+            "${commentprefix} Created on ${date}",
+            "${commentend}"
+        ]
+    }
+}
