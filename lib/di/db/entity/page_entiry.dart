@@ -1,16 +1,14 @@
 import 'package:isar/isar.dart';
 
-part 'post_entity.g.dart';
+part 'page_entiry.g.dart';
 
 @collection
-class PostEntity {
+class PageEntity {
   Id id = Isar.autoIncrement;
   @Index(unique: true, replace: true)
   late String url;
   late String title;
   late String content;
-  late DateTime date;
-  late String image;
 
-  PostEntity();
+  PageEntity();
 }

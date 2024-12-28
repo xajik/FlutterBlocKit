@@ -41,11 +41,16 @@ Options to release the app:
 
 See [BLoC](https://bloclibrary.dev/)
 
+### Localisation 
+
+1. Add new localisation in [l10n](lib/l10n/app_en.arb)
+2. Run `fvm flutter gen-l10n` or rebuild the app
+
 ### Database
 
 Isar DB
 
-* To regenerate clases`flutter pub run build_runner build`
+* To regenerate clases `fvm flutter pub run build_runner build`
 * New entity add `part '[file name].g.dart';`
 
 ### Launcher Icon

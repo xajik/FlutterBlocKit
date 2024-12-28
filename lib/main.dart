@@ -7,8 +7,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'di/app_di.dart';
 import 'screens/_greenfield/greenfield_bloc.dart';
-import 'screens/_greenfield/greenfield_widget.dart';
-import 'screens/home/connectivity_bloc.dart';
+import 'screens/_greenfield/greenfield_screen.dart';
+import 'screens/connectivity/connectivity_bloc.dart';
+import 'screens/connectivity/connectivity_widget.dart';
+import 'screens/home/home_screen.dart';
 import 'utils/theme_utils.dart';
 
 void main() async {
@@ -39,11 +41,11 @@ Widget createApp(ApplicationDependency di) {
         // ),
       ],
       child: MaterialApp(
-        title: 'TODO: Update',
+        title: 'TODO: Update', //TODO: Update
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         theme: AppTheme.createTheme(),
-        home: const GreenfieldScreenWidget(),
+        home: const HomeScreen(),
         onGenerateRoute: _getRoutes(),
         debugShowCheckedModeBanner: false,
         navigatorObservers: [
@@ -61,6 +63,12 @@ RouteFactory _getRoutes() => (settings) {
       switch (settings.name) {
         case GreenfieldScreenWidget.route:
           widget = const GreenfieldScreenWidget();
+          break;
+        case ConnectivityScreen.route:
+          widget = const ConnectivityScreen();
+          break;
+        case HomeScreen.route:
+          widget = const HomeScreen();
           break;
       }
       if (widget == null) {

@@ -15,11 +15,10 @@ class PostRepo {
   }
 
   Future<void> clear() async {
-    await _collection.clear();
+    _transaction(() async => await _collection.clear());
   }
 
   Future<List<PostEntity>> get() async {
     return _collection.where().findAll();
   }
-
 }

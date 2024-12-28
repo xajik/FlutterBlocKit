@@ -5,20 +5,23 @@ class PostResponse {
   final String url;
   final DateTime date;
   final String image;
+  final String content;
 
   PostResponse({
     required this.title,
     required this.url,
     required this.date,
     required this.image,
+    required this.content,
   });
 
   factory PostResponse.fromJson(Map<String, dynamic> json) {
     return PostResponse(
-      title: json['title'] as String,
-      url: json['url'] as String,
-      date: DateTime.parse(json['date'] as String),
-      image: json['image'] as String,
+      title: json['title'],
+      url: json['url'],
+      date: DateTime.parse(json['date']),
+      image: json['image'],
+      content: json['content'],
     );
   }
 
@@ -28,6 +31,7 @@ class PostResponse {
       'url': url,
       'date': date.toIso8601String(),
       'image': image,
+      'content': content,
     };
   }
 
@@ -36,6 +40,7 @@ class PostResponse {
      ..title = title
      ..url = url
      ..date = date
-     ..image = image;
+     ..image = image
+     ..content = content;
   }
 }
