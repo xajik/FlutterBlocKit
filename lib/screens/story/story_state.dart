@@ -1,8 +1,15 @@
+import 'package:flutterblockit/di/db/entity/post_entity.dart';
+import 'package:flutterblockit/utils/data_snapshot.dart';
+
 abstract class StoryScreenState {
-  final int currentValue;
-  StoryScreenState(this.currentValue);
+  StoryScreenState();
 }
 
-class CounterUpdated extends StoryScreenState {
-  CounterUpdated(super.counterValue);
+class StoryInitScreenState extends StoryScreenState {
+  StoryInitScreenState();
+}
+
+class StoryLoadedScreenState extends StoryScreenState {
+  final DataSnapshot<PostEntity> story;
+  StoryLoadedScreenState(this.story);
 }

@@ -1,3 +1,8 @@
 abstract class StoryEvent {}
 
-class StoryIncrementCounter extends StoryEvent {}
+class StoryLoadEvent extends StoryEvent {
+  final String postUrl;
+
+  StoryLoadEvent(this.postUrl);
+  
+}

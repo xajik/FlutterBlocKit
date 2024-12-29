@@ -25,4 +25,12 @@ class PostsUseCase {
     final cache = await _repo.get();
     return DataSnapshot.data(cache);
   }
+
+    Future<DataSnapshot<PostEntity>> getByUrl(String url) async {
+    final cache = await _repo.getByUrl(url);
+    if (cache == null) {
+      return DataSnapshot.error("Post not found");
+    }
+    return DataSnapshot.data(cache);
+  }
 }

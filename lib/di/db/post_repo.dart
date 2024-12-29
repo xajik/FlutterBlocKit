@@ -21,4 +21,8 @@ class PostRepo {
   Future<List<PostEntity>> get() async {
     return _collection.where().findAll();
   }
+
+  Future<PostEntity?>  getByUrl(String url) async {
+    return _collection.where().filter().urlEqualTo(url).findFirst();
+  }
 }

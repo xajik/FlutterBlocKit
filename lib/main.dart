@@ -77,7 +77,9 @@ RouteFactory _getRoutes() => (settings) {
           widget = const AccountScreen();
           break;
         case StoryScreen.route:
-          widget = const StoryScreen();
+          widget = StoryScreen(
+            arguments: args!,
+          );
           break;
       }
       if (widget == null) {

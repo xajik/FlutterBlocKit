@@ -89,7 +89,7 @@ class HomeScreen extends StatelessWidget {
                           context,
                           StoryScreen.route,
                           arguments: {
-                            'post': post.url,
+                            StoryScreen.paramUrl: post.url,
                           },
                         ),
                         child: Card(

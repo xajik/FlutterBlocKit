@@ -6,6 +6,8 @@ class StoryLocalization {
   StoryLocalization(this.localizations);
 
   String get appName => localizations.appName;
-  String get counterMessage => localizations.counterMessage;
-  String get incrementTooltip => localizations.incrementTooltip;
+  String get loading => localizations.loading;
+  String get error => localizations.error;
+  String get oops => localizations.oops;
+  
 }
