@@ -10,5 +10,6 @@
   "greenfieldScreenTitle": "Greenfield",
   "loading": "Loading",
   "failedToLoadPosts": "Failed to load posts",
-  "emptyPosts": "Start by creating a first post"
+  "emptyPosts": "Start by creating a first post",
+  "about": "About"
 }

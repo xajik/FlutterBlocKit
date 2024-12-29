@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterblockit/screens/account/account_screen.dart';
 import 'package:flutterblockit/screens/connectivity/connectivity_bloc.dart';
 import 'package:flutterblockit/utils/context_utils.dart';
 import 'package:flutterblockit/utils/theme_utils.dart';
+import '../../utils/navigation_utils.dart';
 import '../connectivity/connectivity_state.dart';
 import 'home_bloc.dart';
 import 'home_event.dart';
@@ -27,7 +29,7 @@ class HomeScreen extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.account_circle),
               onPressed: () {
-                context.read<HomeBloc>().add(HomeLoadEvent());
+                NavigatorUtils.push(context, AccountScreen.route);
               },
             ),
           ],

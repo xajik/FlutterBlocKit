@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutterblockit/di/usecase/pages_use_case.dart';
 import 'package:flutterblockit/di/usecase/posts_use_case.dart';
 
 import 'api/api_service.dart';
@@ -14,6 +15,7 @@ class ApplicationDependency {
   final Database database;
   final UserSessionUseCase userSessionUsecase;
   final PostsUseCase postsUseCase;
+  final PagesUseCase pagesUseCase;
   final AppAnalytics appAnalytics;
   // final FirebaseService firebase; //TODO: Update
   final AmplitudeService amplitude;
@@ -23,6 +25,7 @@ class ApplicationDependency {
     required this.database,
     required this.userSessionUsecase,
     required this.postsUseCase,
+    required this.pagesUseCase,
     required this.appAnalytics,
     // required this.firebase, //TODO: Update
     required this.amplitude,
@@ -65,11 +68,17 @@ class ApplicationDependency {
       db.post,
     );
 
+    final pagesUseCase = PagesUseCase(
+      api.postApi,
+      db.page,
+    );  
+
     return ApplicationDependency(
       apiService: api,
       database: db,
       userSessionUsecase: userSession,
       postsUseCase: postsUseCase,
+      pagesUseCase: pagesUseCase,
       appAnalytics: analytics,
       // firebase: firebase, //TODO: Remove Comment
       amplitude: amplitude,

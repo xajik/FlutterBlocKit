@@ -8,6 +8,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'di/app_di.dart';
 import 'screens/_greenfield/greenfield_bloc.dart';
 import 'screens/_greenfield/greenfield_screen.dart';
+import 'screens/account/account_screen.dart';
 import 'screens/connectivity/connectivity_bloc.dart';
 import 'screens/connectivity/connectivity_widget.dart';
 import 'screens/home/home_screen.dart';
@@ -27,6 +28,7 @@ Widget createApp(ApplicationDependency di) {
     providers: [
       RepositoryProvider.value(value: di.userSessionUsecase),
       RepositoryProvider.value(value: di.postsUseCase),
+      RepositoryProvider.value(value: di.pagesUseCase),
     ],
     child: MultiBlocProvider(
       providers: [
@@ -69,6 +71,9 @@ RouteFactory _getRoutes() => (settings) {
           break;
         case HomeScreen.route:
           widget = const HomeScreen();
+          break;
+          case AccountScreen.route:
+          widget = const AccountScreen();
           break;
       }
       if (widget == null) {
