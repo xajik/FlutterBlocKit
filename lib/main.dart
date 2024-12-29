@@ -12,6 +12,7 @@ import 'screens/account/account_screen.dart';
 import 'screens/connectivity/connectivity_bloc.dart';
 import 'screens/connectivity/connectivity_widget.dart';
 import 'screens/home/home_screen.dart';
+import 'screens/story/story_screen.dart';
 import 'utils/theme_utils.dart';
 
 void main() async {
@@ -72,8 +73,11 @@ RouteFactory _getRoutes() => (settings) {
         case HomeScreen.route:
           widget = const HomeScreen();
           break;
-          case AccountScreen.route:
+        case AccountScreen.route:
           widget = const AccountScreen();
+          break;
+        case StoryScreen.route:
+          widget = const StoryScreen();
           break;
       }
       if (widget == null) {
