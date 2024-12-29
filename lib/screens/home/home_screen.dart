@@ -17,6 +17,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localization = HomeLocalization(context.appLocalizations());
+    final textTheme = context.textTheme();
     return BlocProvider(
       create: (context) => HomeBloc(context.read())..add(HomeLoadEvent()),
       child: Scaffold(
@@ -79,9 +80,34 @@ class HomeScreen extends StatelessWidget {
                     itemCount: data.length,
                     itemBuilder: (context, index) {
                       final post = data[index];
-                      return ListTile(
-                        title: Text(post.title),
-                        subtitle: Text(post.title),
+                      return Card(
+                        elevation: 0.4,
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 16),
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(16),
+                          title: Text(
+                            post.title,
+                            style: textTheme.titleSmall,
+                          ),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              _formatTitle(post.content),
+                              style: textTheme.bodyMedium,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          // trailing: const Icon(
+                          //   Icons.arrow_forward_ios,
+                          //   size: 16,
+                          //   color: AppColors.darkGrey,
+                          // ),
+                          onTap: () {
+                            // Handle tap event
+                          },
+                        ),
                       );
                     },
                   );
@@ -93,5 +119,11 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _formatTitle(String htmlText) {
+    final regex = RegExp(r"<[^>]*>");
+    final plainText = htmlText.replaceAll(regex, '');
+    return plainText;
   }
 }

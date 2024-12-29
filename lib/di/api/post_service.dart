@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:html_unescape/html_unescape.dart';
 
 import 'model/pages_response.dart';
 import 'model/post_response.dart';
@@ -12,9 +11,15 @@ class PostApi {
 
   PostApi(this._client);
 
-  Future<List<PostResponse>> getPosts() async {
+  Future<List<PostResponse>> getPosts({String? etag}) async {
     var response = await _client.get(
       'posts.json',
+      options: Options(
+        headers: {
+          if (etag != null && etag.isNotEmpty)
+            HttpHeaders.ifNoneMatchHeader: etag,
+        },
+      ),
     );
     if (response.statusCode == HttpStatus.ok) {
       var replace = response.data.replaceAll('""', '"');
@@ -24,12 +29,19 @@ class PostApi {
     return Future.error(response.data);
   }
 
-  Future<List<PageResponse>> getPages() async {
+  Future<List<PageResponse>> getPages({String? etag}) async {
     var response = await _client.get(
       'pages.json',
+      options: Options(
+        headers: {
+          if (etag != null && etag.isNotEmpty)
+            HttpHeaders.ifNoneMatchHeader: etag,
+        },
+      ),
     );
     if (response.statusCode == HttpStatus.ok) {
-      final List<dynamic> jsonData = jsonDecode(response.data);
+      var replace = response.data.replaceAll('""', '"');
+      final List<dynamic> jsonData = jsonDecode(replace);
       return jsonData.map((json) => PageResponse.fromJson(json)).toList();
     }
     return Future.error(response.data);

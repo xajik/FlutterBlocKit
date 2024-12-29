@@ -66,7 +66,7 @@ mixin AppTheme {
       ),
       headlineSmall: GoogleFonts.merriweather(
         fontSize: 20.0,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.bold,
         color: AppColors.onBackground,
       ),
       titleLarge: GoogleFonts.playfairDisplay(
@@ -94,13 +94,13 @@ mixin AppTheme {
         fontSize: 14.0,
         fontWeight: FontWeight.w400,
         height: 1.6,
-        color: AppColors.onSurface,
+        color: AppColors.secondary,
       ),
       bodySmall: GoogleFonts.lora(
         fontSize: 12.0,
         fontWeight: FontWeight.w400,
         height: 1.6,
-        color: AppColors.onSurface,
+        color: AppColors.secondary,
       ),
       labelLarge: GoogleFonts.merriweather(
         fontSize: 14.0,

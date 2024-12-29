@@ -20,7 +20,7 @@ class PostsUseCase {
         await _repo.insert(posts.map((e) => e.toEntity()).toList());
       }
     } catch (e) {
-      return DataSnapshot.error(e.toString());
+      //TODO: report analytics
     }
     final cache = await _repo.get();
     return DataSnapshot.data(cache);
