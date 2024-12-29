@@ -42,6 +42,7 @@ class AccountScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: HtmlWidget(
                     data.content,
+                    enableCaching: true,
                   ),
                 );
               }

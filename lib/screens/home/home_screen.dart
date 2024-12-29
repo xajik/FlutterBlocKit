@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterblockit/screens/account/account_screen.dart';
@@ -86,30 +87,41 @@ class HomeScreen extends StatelessWidget {
                         elevation: 0.4,
                         margin: const EdgeInsets.symmetric(
                             vertical: 8, horizontal: 16),
-                        child: ListTile(
-                          contentPadding: const EdgeInsets.all(16),
-                          title: Text(
-                            post.title,
-                            style: textTheme.titleSmall,
-                          ),
-                          subtitle: Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Text(
-                              _formatTitle(post.content),
-                              style: textTheme.bodyMedium,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
+                        child: Stack(children: [
+                          Column(children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Opacity(
+                                  opacity: 0.85,
+                                  child: CachedNetworkImage(
+                                    imageUrl: 'https://igorsteblii.com/${post.image}',
+                                    fit: BoxFit.fitWidth,
+                                    height: 68,
+                                    width: double.infinity,
+                                  ),
+                                ),
+                                ),
+                              ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: Text(
+                                post.title,
+                                style: textTheme.titleSmall,
+                              ),
                             ),
-                          ),
-                          // trailing: const Icon(
-                          //   Icons.arrow_forward_ios,
-                          //   size: 16,
-                          //   color: AppColors.darkGrey,
-                          // ),
-                          onTap: () {
-                            // Handle tap event
-                          },
-                        ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+                              child: Text(
+                                _formatTitle(post.content),
+                                style: textTheme.bodyMedium,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ]),
+                        ]),
                       );
                     },
                   );
