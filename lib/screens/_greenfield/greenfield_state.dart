@@ -3,6 +3,6 @@ abstract class GreenfieldScreenState {
   GreenfieldScreenState(this.currentValue);
 }
 
-class CounterUpdated extends GreenfieldScreenState {
-  CounterUpdated(super.counterValue);
+class GreenfieldCounterUpdated extends GreenfieldScreenState {
+  GreenfieldCounterUpdated(super.counterValue);
 }

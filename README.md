@@ -1,5 +1,13 @@
 # Flutter Bloc Kit
 
+## Demo 
+
+Demo app is using [igorsteblii.com](igorsteblii.com) Jekyll based blog as an API source to feature articles and About page.
+
+| Home | Story | About |
+|--------|--------|--------|
+| ![Demo 1](demo/home.png) | ![Demo 2](demo/story.png) | ![Demo 3](demo/about.png) |
+
 ## Setup 
 
 ### Flutter Version Manager 
@@ -35,7 +43,15 @@ Options to release the app:
     * fvm flutter build ipa --release
     * open file with Xcode, validate and upload
 
-## Dart Plugins
+## Greenfield
+
+A simple way to create a new screen, copy folder [_greenfield](lib/screens/_greenfield) and rename all instances:
+
+   *  files names from `greenfield_` to new name
+   *  All instances of `greenfield` and `Greenfield` in file
+
+
+## Plugins
 
 ### Architecture
 
@@ -103,4 +119,4 @@ Branch naming: `type/ticket`
 
 ## Author
 
-Email: xajik0@gmail.com
+Email: me@igorsteblii.com
