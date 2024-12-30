@@ -22,8 +22,7 @@ class PostApi {
       ),
     );
     if (response.statusCode == HttpStatus.ok) {
-      var replace = response.data.replaceAll('""', '"').replaceAll(
-          '"/assets/images', '"https://igorsteblii.com/assets/images');
+      final replace = _formatJekyllResponse(response.data);
       final List<dynamic> jsonData = jsonDecode(replace);
       return jsonData.map((json) => PostResponse.fromJson(json)).toList();
     }
@@ -41,11 +40,15 @@ class PostApi {
       ),
     );
     if (response.statusCode == HttpStatus.ok) {
-      var replace = response.data.replaceAll('""', '"').replaceAll(
-          '"/assets/images', '"https://igorsteblii.com/assets/images');
+      final replace = _formatJekyllResponse(response.data);
       final List<dynamic> jsonData = jsonDecode(replace);
       return jsonData.map((json) => PageResponse.fromJson(json)).toList();
     }
     return Future.error(response.data);
+  }
+
+  String _formatJekyllResponse(String response) {
+    return response.replaceAll('""', '"').replaceAll(
+        '"/assets/images', '"https://igorsteblii.com/assets/images');
   }
 }
