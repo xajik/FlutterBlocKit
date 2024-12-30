@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutterblockit/di/api/session_api.dart';
 import 'package:flutterblockit/di/api/user_api.dart';
+import 'package:flutterblockit/di/db/etag_repo.dart';
 import 'dart:developer' as developer;
 
 import 'interceptors/agent_request_interceptor.dart';
@@ -23,9 +24,9 @@ class ApiService {
     required this.userApi,
   });
 
-  factory ApiService._(Dio client) {
+  factory ApiService._(Dio client, EtagRepo etag) {
     return ApiService(
-      postApi: PostApi(client),
+      postApi: PostApi(client, etag),
       sessionApi: SessionApi(client),
       userApi: UserApi(client),
     );
@@ -33,13 +34,15 @@ class ApiService {
 }
 
 mixin ApiServiceFactory {
-
   //TODO: Update
   static const _baseUrl =
-    kReleaseMode ? "https://igorsteblii.com" : "https://igorsteblii.com"; 
+      kReleaseMode ? "https://igorsteblii.com" : "https://igorsteblii.com";
 
-  static Future<ApiService> create(Stream<String?> session,
-      StreamController<bool> unauthorizedStream) async {
+  static Future<ApiService> create(
+    Stream<String?> session,
+    StreamController<bool> unauthorizedStream,
+    EtagRepo etagRepo,
+  ) async {
     final buildInfo = await AppClientInfoUtils.buildInfo;
     final agentInterceptor = AgentInterceptor(buildInfo);
 
@@ -52,6 +55,7 @@ mixin ApiServiceFactory {
       receiveTimeout: const Duration(seconds: 60),
       responseType: ResponseType.plain,
       followRedirects: true,
+      validateStatus: (status) => status != null && (status >= 200 && status < 300) || status == 304,
     );
 
     final logInterceptor = LogInterceptor(
@@ -71,6 +75,6 @@ mixin ApiServiceFactory {
         logInterceptor,
       );
 
-    return ApiService._(authentificatedDio);
+    return ApiService._(authentificatedDio, etagRepo);
   }
 }

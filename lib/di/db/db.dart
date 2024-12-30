@@ -1,3 +1,4 @@
+import 'package:flutterblockit/di/db/entity/etag_entity.dart';
 import 'package:flutterblockit/di/db/entity/post_entity.dart';
 import 'package:flutterblockit/di/db/entity/session_entity.dart';
 import 'package:flutterblockit/di/db/entity/user_entity.dart';
@@ -6,6 +7,7 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutterblockit/di/db/entity/page_entiry.dart';
 
+import 'etag_repo.dart';
 import 'page_repo.dart';
 import 'post_repo.dart';
 import 'session_repo.dart';
@@ -15,12 +17,14 @@ class Database {
   final SessionRepo session;
   final UserRepo user;
   final PageRepo page;
+  final EtagRepo etag;
 
   Database._(
     this.post,
     this.session,
     this.user,
     this.page,
+    this.etag,
   );
 
   static Future<Database> crete() async {
@@ -31,6 +35,7 @@ class Database {
         SessionEntitySchema,
         UserEntitySchema,
         PageEntitySchema,
+        EtagEntitySchema,
       ],
       directory: dir.path,
     );
@@ -44,6 +49,8 @@ class Database {
       SessionRepo(isar.sessionEntitys, transaction),
       UserRepo(isar.userEntitys, transaction),
       PageRepo(isar.pageEntitys, transaction),
+      EtagRepo(isar.etagEntitys, transaction),
+
     );
   }
 }

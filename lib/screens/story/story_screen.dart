@@ -49,7 +49,6 @@ class _StoryScreenState extends State<StoryScreen> {
                     flexibleSpace: LayoutBuilder(
                       builder:
                           (BuildContext context, BoxConstraints constraints) {
-                        // Check if the app bar is collapsed
                         final bool isCollapsed =
                             constraints.biggest.height <= 130.0;
 
@@ -74,7 +73,7 @@ class _StoryScreenState extends State<StoryScreen> {
                               ),
                               Container(
                                 color: AppColors.white.withOpacity(
-                                    0.4), // Overlay for readability
+                                    0.4),
                               ),
                             ],
                           ),

@@ -15,14 +15,15 @@ class PagesUseCase {
   Future<DataSnapshot<PageEntity>> getAboutPage() async {
     try {
       final pages = await _postApi.getPages();
-      final pageEntities = pages.map((page) => page.toEntity()).toList();
-      await _repo.insert(pageEntities);
+      if (pages.isNotEmpty) {
+        await _repo.clear();
+        final pageEntities = pages.map((page) => page.toEntity()).toList();
+        await _repo.insert(pageEntities);
+      }
     } catch (e) {
       //TODO: report analytics
     }
-
     final aboutPageEntity = await _repo.getByUrl(aboutPageUrl);
-
     if (aboutPageEntity == null) {
       return DataSnapshot.error("Not Found");
     } else {

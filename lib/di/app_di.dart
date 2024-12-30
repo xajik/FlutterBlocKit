@@ -38,13 +38,15 @@ class ApplicationDependency {
     final StreamController<bool> unauthorizedStream =
         StreamController<bool>.broadcast();
 
+    final db = await Database.crete();
+    await db.session.sessionStream(sessionStream);
+
+
     final api = await ApiServiceFactory.create(
       sessionStream.stream,
       unauthorizedStream,
+      db.etag,
     );
-
-    final db = await Database.crete();
-    await db.session.sessionStream(sessionStream);
 
     // final firebase = await FirebaseService.create(); //TODO: Update; Create lib/firebase_options.dart via Firebase CLI
     final amplitude = await AmplitudeService.create();
