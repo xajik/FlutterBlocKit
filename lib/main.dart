@@ -36,7 +36,6 @@ Widget createApp(ApplicationDependency di) {
         BlocProvider<ConnectivityBloc>(
           create: (context) => ConnectivityBloc(Connectivity()),
         ),
-        BlocProvider(create: (context) => GreenfieldBloc()),
         // BlocProvider<UserSessionBloc>(
         //   lazy: false,
         //   create: (context) => UserSessionBloc(di.userSessionUsecase)
@@ -46,7 +45,14 @@ Widget createApp(ApplicationDependency di) {
       child: MaterialApp(
         title: 'TODO: Update', //TODO: Update
         localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
+        supportedLocales: const [
+          Locale('en', ''), // English
+          Locale('uk', ''), // Ukrainian
+          Locale('de', ''), // German
+          Locale('hi', ''), // Hindi
+          Locale('zh', ''), // Chinese
+          Locale('es', ''), // Spanish
+        ],
         theme: AppTheme.createTheme(),
         home: const HomeScreen(),
         onGenerateRoute: _getRoutes(),

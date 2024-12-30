@@ -1,0 +1,16 @@
+{
+  "appName": "TODO: Update",
+  "counterMessage": "Has presionado el botón tantas veces:",
+  "incrementTooltip": "Incrementar",
+  "oops": "Vaya, algo salió mal. Por favor, inténtalo de nuevo.",
+  "author": "Igor Steblii",
+  "homeScreenTitle": "Inicio",
+  "connectivityScreenTitle": "Conectividad",
+  "noInternetConnection": "Sin conexión a Internet",
+  "greenfieldScreenTitle": "Greenfield",
+  "loading": "Cargando",
+  "failedToLoadPosts": "No se pudieron cargar las publicaciones",
+  "emptyPosts": "Comienza creando una primera publicación",
+  "about": "Acerca de",
+  "error": "Error"
+}

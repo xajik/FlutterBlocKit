@@ -1,0 +1,16 @@
+{
+  "appName": "TODO: Update",
+  "counterMessage": "Sie haben den Knopf so oft gedrückt:",
+  "incrementTooltip": "Erhöhen",
+  "oops": "Ups, etwas ist schief gelaufen. Bitte versuchen Sie es erneut.",
+  "author": "Igor Steblii",
+  "homeScreenTitle": "Startseite",
+  "connectivityScreenTitle": "Verbindung",
+  "noInternetConnection": "Keine Internetverbindung",
+  "greenfieldScreenTitle": "Greenfield",
+  "loading": "Laden",
+  "failedToLoadPosts": "Beiträge konnten nicht geladen werden",
+  "emptyPosts": "Beginnen Sie mit dem Erstellen eines ersten Beitrags",
+  "about": "Über uns",
+  "error": "Fehler"
+}

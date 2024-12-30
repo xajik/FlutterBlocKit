@@ -17,37 +17,40 @@ class GreenfieldScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localization = GreenfieldLocalization(context.appLocalizations());
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(localization.appName),
-      ),
-      body: BlocBuilder<GreenfieldBloc, GreenfieldScreenState>(
-        builder: (context, state) {
-          final counterValue = state.currentValue;
-
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  localization.counterMessage,
-                ),
-                Text(
-                  '$counterValue',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-              ],
-            ),
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.read<GreenfieldBloc>().add(GreenfieldIncrementCounter());
-        },
-        tooltip: localization.incrementTooltip,
-        child: const Icon(Icons.add),
+    return BlocProvider(
+      create: (context) => GreenfieldBloc(),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text(localization.appName),
+        ),
+        body: BlocBuilder<GreenfieldBloc, GreenfieldScreenState>(
+          builder: (context, state) {
+            final counterValue = state.currentValue;
+      
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    localization.counterMessage,
+                  ),
+                  Text(
+                    '$counterValue',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            context.read<GreenfieldBloc>().add(GreenfieldIncrementCounter());
+          },
+          tooltip: localization.incrementTooltip,
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }

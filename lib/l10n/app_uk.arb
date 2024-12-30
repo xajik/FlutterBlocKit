@@ -1,0 +1,16 @@
+{
+  "appName": "TODO: Update",
+  "counterMessage": "Ви натиснули кнопку стільки разів:",
+  "incrementTooltip": "Збільшити",
+  "oops": "Ой, щось пішло не так. Будь ласка, спробуйте ще раз.",
+  "author": "Ігор Стеблій",
+  "homeScreenTitle": "Головна",
+  "connectivityScreenTitle": "Підключення",
+  "noInternetConnection": "Немає підключення до Інтернету",
+  "greenfieldScreenTitle": "Greenfield",
+  "loading": "Завантаження",
+  "failedToLoadPosts": "Не вдалося завантажити пости",
+  "emptyPosts": "Почніть з створення першого посту",
+  "about": "Про нас",
+  "error": "Помилка"
+}

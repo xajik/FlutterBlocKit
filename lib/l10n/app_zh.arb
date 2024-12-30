@@ -1,0 +1,16 @@
+{
+  "appName": "TODO: Update",
+  "counterMessage": "您按下按钮的次数是：",
+  "incrementTooltip": "增加",
+  "oops": "哎呀，出了点问题。请再试一次。",
+  "author": "伊戈尔·斯特布利",
+  "homeScreenTitle": "首页",
+  "connectivityScreenTitle": "连接",
+  "noInternetConnection": "没有互联网连接",
+  "greenfieldScreenTitle": "Greenfield",
+  "loading": "加载中",
+  "failedToLoadPosts": "加载帖子失败",
+  "emptyPosts": "从创建第一篇帖子开始",
+  "about": "关于",
+  "error": "错误"
+}

@@ -1,0 +1,16 @@
+{
+  "appName": "TODO: Update",
+  "counterMessage": "आपने इस बटन को इतनी बार दबाया है:",
+  "incrementTooltip": "बढ़ाएँ",
+  "oops": "उफ़, कुछ गलत हो गया। कृपया पुन: प्रयास करें।",
+  "author": "इगोर स्टेब्ली",
+  "homeScreenTitle": "मुख्य पृष्ठ",
+  "connectivityScreenTitle": "कनेक्टिविटी",
+  "noInternetConnection": "कोई इंटरनेट कनेक्शन नहीं",
+  "greenfieldScreenTitle": "ग्रीनफील्ड",
+  "loading": "लोड हो रहा है",
+  "failedToLoadPosts": "पोस्ट लोड करने में विफल",
+  "emptyPosts": "पहली पोस्ट बनाकर शुरू करें",
+  "about": "के बारे में",
+  "error": "त्रुटि"
+}
